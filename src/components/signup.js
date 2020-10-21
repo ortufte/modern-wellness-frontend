@@ -25,13 +25,6 @@ const SignUp = (props) => {
             onChange={props.handleInputChange}
             value={props.password}
             />
-              <input 
-            type="text"
-            name="affliction"
-            placeholder="Illness"
-            onChange={props.handleInputChange}
-            value={props.affliction}
-            />
             <input 
             type="submit" 
             name="Sign Up" 
