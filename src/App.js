@@ -2,11 +2,13 @@ import React from 'react';
 import './App.css';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
+import LogList from './components/LogList';
+import MedicineCabinet from './components/MedicineCabinet';
 
 class App extends React.Component {
 
   state = {
-    user: null, 
+    currentUser: null, 
     signUpForm: {
       name: "",
       email: "",
@@ -15,7 +17,7 @@ class App extends React.Component {
     loginForm: {
       email: "",
       password: "",
-    }
+    },
   }
 
   handleInputChange = event => {
@@ -49,7 +51,7 @@ class App extends React.Component {
     })
     .then(resp => resp.json())
     .then(user => 
-      this.setState({ user: user }))
+      this.setState({ currentUser: user }))
     .catch(err => console.error("Error:", err));
   }
 
@@ -68,9 +70,15 @@ class App extends React.Component {
       )
     })
     .then(resp => resp.json())
-    .then(user => 
-      this.setState({ user: user }))
-    .catch(err => console.error("Error:", err));
+    .then(user => {
+      if (user.error) {
+        alert("Invalid Credentials") //Server Errors
+      }
+      else {
+        this.setState({ currentUser: user })
+      }
+    })
+    .catch(err => console.error("Error:", err)); //JS Errors
   }
 
 
@@ -91,6 +99,13 @@ class App extends React.Component {
         email={this.state.signUpForm.email}
         password={this.state.signUpForm.password}
         />
+        { this.state.currentUser ? 
+        <LogList logs={this.state.currentUser.data.attributes.logs}/> : 
+        "No Logs"}
+        <br></br>
+        { this.state.currentUser ?
+        <MedicineCabinet medicines={this.state.currentUser.data.attributes.medicines} /> :
+        "Medicine Cabinet is Empty"}
       </div>
     );
   }
