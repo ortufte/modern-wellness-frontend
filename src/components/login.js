@@ -1,22 +1,39 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { updateLoginForm } from '../actions/loginForm'
+import { login } from '../actions/currentUser' //- login action from currentuser actions
 
-const Login = (props) => {
+const Login = ({ loginFormData, updateLoginForm, login } )  => { //could destructure props and pass in as ({ email, password })
 
+    const handleInputChange = event => {
+        const { name, value } = event.target
+        const updatedFormInfo = {
+            ...loginFormData, 
+            [name]:value
+        }
+        updateLoginForm(updatedFormInfo)
+    }
+
+    const handleSubmit = event => {
+        event.preventDefault()
+        login(loginFormData)
+    }
+    
     return (
-        <form onSubmit={props.handleLogin}>
+        <form onSubmit={handleSubmit}> //
         <input 
         type="text" 
         name="email" 
         placeholder="Email Address"
-        onChange={props.handleInputChange}
-        value={props.email}
+        onChange={handleInputChange} //initial ({name, value}) is destructuring the event
+        value={loginFormData.email} //this makes this a controlled component
         />
         <input 
         type="password"
         name="password"
         placeholder="Password"
-        onChange={props.handleInputChange}
-        value={props.password}
+        onChange={handleInputChange}
+        value={loginFormData.password} //this makes this a controlled component
         />
         <input 
         type="submit" 
@@ -26,4 +43,10 @@ const Login = (props) => {
     )
 }
 
-export default Login
+const mapStateToProps = state => {
+    return {
+        loginFormData: state.loginForm //returning the whole form instead of email, password  to make updating state easier 
+    }
+}
+
+export default connect(mapStateToProps, { updateLoginForm, login })(Login) 
