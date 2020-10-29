@@ -1,14 +1,20 @@
 
 //synchronous action creators
 
-export const setCurrentUser = user => {
+export const setCurrentUser = (user) => {
     return {
         type: "SET_CURRENT_USER",
         payload: user
     }
 }
 
-//asynchronous action creators
+export const clearCurrentUser = () => {
+  return {
+    type: "CLEAR_CURRENT_USER"
+  }
+}
+
+//asynchronous action creators - returning an action creator - function
 
 export const login = credentials => { 
     return dispatch => {
@@ -31,15 +37,26 @@ export const login = credentials => {
             alert(user.error) //Server Errors
           }
           else {
-            dispatch(setCurrentUser(user))
+            dispatch(setCurrentUser(user)) 
+             //need to update to only grab name and email, not password
             // this.setState({ currentUser: user }) - vanilla redux
           }
         })
         .catch(err => console.error("Error:", err)); //JS Errors
     } 
 }
+// first dispatch is updating frontend, second dispatch is updating backend
+export const logout = (credentials) => {
+  return dispatch => {
+    dispatch(clearCurrentUser()) 
+    return fetch("http://localhost:3001/api/v1/logout", { 
+      credentials: "include",
+      method: 'DELETE',
+    })
+  }
+}
 
-export const getCurrentUser = (credentials) => { 
+export const getCurrentUser = () => { 
   return dispatch => {
       return fetch("http://localhost:3001/api/v1/get_current_user", {
         credentials: "include",
@@ -60,5 +77,11 @@ export const getCurrentUser = (credentials) => {
       .catch(err => console.error("Error:", err)); //JS Errors
   } 
 }
+
+export const createUser = userData => {
+
+}
+
+
 
 
