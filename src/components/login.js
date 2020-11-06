@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { updateLoginForm } from '../actions/loginForm'
 import { login } from '../actions/currentUser' //- login action from currentuser actions
 
-const Login = ({ loginFormData, updateLoginForm, login } )  => { //could destructure props and pass in as ({ email, password })
+const Login = ({ loginFormData, updateLoginForm, login, history })  => { 
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -16,11 +16,11 @@ const Login = ({ loginFormData, updateLoginForm, login } )  => { //could destruc
 
     const handleSubmit = event => {
         event.preventDefault()
-        login(loginFormData)
+        login(loginFormData, history) // LOGIN ACTION
     }
     
     return (
-        <form onSubmit={handleSubmit}> //
+        <form className="login" onSubmit={handleSubmit}> 
         <input 
         type="text" 
         name="email" 

@@ -5,4 +5,11 @@ return {
     }
 }
 
+export const resetLoginForm = () => { // ({name, value}) is coming from the form action on change  
+return {
+        type: "RESET_LOGIN_FORM"
+    }
+}
+
 //action creator is an action that returns a fucnction
+

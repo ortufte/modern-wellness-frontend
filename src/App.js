@@ -1,13 +1,20 @@
 import React from 'react';
 import './App.css';
-// import SignUp from './components/SignUp';
 import Login from './components/Login';
-// import LogList from './components/LogList';
-// import MedicineCabinet from './components/MedicineCabinet';
+import Home from './components/Home';
+import UserDashboard from './components/UserDashboard';
 import { connect } from 'react-redux';
-import { getCurrentUser } from './actions/currentUser'
+import { getCurrentUser } from './actions/currentUser';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import MedicineCabinet from './components/MedicineCabinet';
+import LogList from './components/LogList';
+import LogForm from './components/LogForm';
+
+
+
 
 class App extends React.Component {
+  
 
   componentDidMount() {
     this.props.getCurrentUser()
@@ -15,116 +22,29 @@ class App extends React.Component {
 
   render() {
     return(
-      <Login />
+      <div className="app">
+        {/* Router parent in index around app component */}
+          <Switch>
+              <Route exact path="/medicine-cabinet" component={MedicineCabinet}></Route>
+              <Route exact path="/logs/new" component={LogForm}></Route>
+              <Route exact path="/logs" component={LogList}></Route>
+              <Route path="/login" component={Login}></Route>
+              <Route exact path="/" render={(props) => this.props.loggedIn? <UserDashboard {...props}/> : <Home {...props}/>}></Route>
+      
+          </Switch>
+    
+      </div>
+    
     );
   }
 }
 
-export default connect(null, { getCurrentUser })(App);
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: !!state.currentUser
+  }
+}
 
+export default withRouter(connect(mapStateToProps, { getCurrentUser })(App));
 
-  // state = {
-  //   currentUser: null, 
-  //   signUpForm: {
-  //     name: "",
-  //     email: "",
-  //     password: "",
-  //   },
-  //   loginForm: {
-  //     email: "",
-  //     password: "",
-  //   },
-  // }
-
-  // handleInputChange = event => { //do this in the Login component now
-  //   const { name, value } = event.target
-  //   this.setState({
-  //     signUpForm: {
-  //       ...this.state.signUpForm,
-  //       [name]: value
-  //     },
-  //     loginForm: {
-  //       ...this.state.loginForm,
-  //       [name]: value
-  //     }
-  //   })
-  // }
-
-  // handleSignUp = event => {
-  //   event.preventDefault();
-
-  //   let user = this.state.signUpForm
-
-  //   fetch("http://localhost:3000/api/v1/users", {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       "Accept": "application/json"
-  //     },
-  //     body: JSON.stringify(
-  //       { user }
-  //     )
-  //   })
-  //   .then(resp => resp.json())
-  //   .then(user => 
-  //     this.setState({ currentUser: user }))
-  //   .catch(err => console.error("Error:", err));
-  // }
-
-  // handleLogin = event => {  //do this in the currentUser action now
-  //   event.preventDefault()
-
-  //   let user = this.state.loginForm
-
-  //   fetch("http://localhost:3000/api/v1/login", {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(
-  //       { user }
-  //     )
-  //   })
-  //   .then(resp => resp.json())
-  //   .then(user => {
-  //     if (user.error) {
-  //       alert("Invalid Credentials") //Server Errors
-  //     }
-  //     else {
-  //       this.setState({ currentUser: user })
-  //     }
-  //   })
-  //   .catch(err => console.error("Error:", err)); //JS Errors
-  // }
-
-
-//   render() {
-//     return (
-//       <div className="App">
-//         Modern Wellness Frontend 
-//         <SignUp 
-//         handleInputChange={this.handleInputChange}
-//         handleSignUp={this.handleSignUp}
-//         name={this.state.signUpForm.name}
-//         email={this.state.signUpForm.email}
-//         password={this.state.signUpForm.password}
-//         />
-//         <Login
-//         handleInputChange={this.handleInputChange}
-//         handleLogin={this.handleLogin}
-//         email={this.state.signUpForm.email}
-//         password={this.state.signUpForm.password}
-//         />
-//         { this.state.currentUser ? 
-//         <LogList logs={this.state.currentUser.data.attributes.logs}/> : 
-//         "No Logs"}
-//         <br></br>
-//         { this.state.currentUser ?
-//         <MedicineCabinet medicines={this.state.currentUser.data.attributes.medicines} /> :
-//         "Medicine Cabinet is Empty"}
-//       </div>
-//     );
-//   }
-//}
-
-
+// do I need withRouter?
