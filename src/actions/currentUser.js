@@ -39,9 +39,10 @@ export const login = (credentials, history) => {
             alert(user.error) //Server Errors
           }
           else {
+     
             dispatch(setCurrentUser(user)) 
             dispatch(resetLoginForm())
-            history.push("/")
+            history.push(`/users/${user.data.id}`)
              //need to update to only grab name and email, not password
             // this.setState({ currentUser: user }) - vanilla redux
           }
@@ -77,7 +78,6 @@ export const getCurrentUser = () => {
           alert(user.error) //Server Errors
         }
         else {
-          console.log(user)
           dispatch(setCurrentUser(user))
         }
       })
@@ -86,12 +86,10 @@ export const getCurrentUser = () => {
 }
 
 export const createUser = userData => { 
-  console.log("data", userData)
   return dispatch => {
     const userInfo = {
       user: userData
     }
-    console.log("info", userInfo)
 
       // let user = this.state.loginForm - from simple react function in App.js
       //could message creating user or soemthing 
