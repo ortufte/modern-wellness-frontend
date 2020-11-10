@@ -1,16 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
-const MedicineCabinet = ({ medicines }) => {
+const MedicineCabinet = ({ currentUser }) => {
 
-    const medicinesJSX = medicines.map(medicine => <li key={ medicine.id }> { medicine.name } </li>)
+    const medicinesJSX = currentUser.data.attributes.medicines.map(medicine => <li key={ medicine.id }> { medicine.name } </li>)
 
     return (
         <div className="medicine-cabinet">
-        <h1> Medicine Cabinet </h1>
-        { medicinesJSX }
+
+            <h1> Medicine Cabinet </h1>
+
+            { medicinesJSX }
+
         </div>
     )
-
 }
 
-export default MedicineCabinet
+const mapStateToProps = ({ currentUser }) => {
+    return {
+        currentUser
+    }
+}
+
+export default connect(mapStateToProps)(MedicineCabinet)
