@@ -3,15 +3,16 @@ import { NavLink } from 'react-router-dom';
 import Logout from './Logout';
 
 
-const Nav = ({ loggedIn }) => {
+const Nav = ({ match }) => {
+
     return (
+        
         <div className="navigation">
-            <NavLink to="/medicine-cabinet">Medicine Cabinet</NavLink>
-            <NavLink to="/logs">Log List</NavLink>
-            <br></br>
+            <NavLink to={`${match.url}/medicine-cabinet`}>Medicine Cabinet</NavLink>
+            <NavLink to={`${match.url}/log-list`}>Log List</NavLink>
             <Logout />
-   
         </div>
+
     )
 }
 
