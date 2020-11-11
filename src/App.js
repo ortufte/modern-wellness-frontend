@@ -19,7 +19,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/login" component={Login}></Route>            
-            <Route path="/users/:userId" component={UserDashboard}></Route>
+            <Route path="/users/:userId" render={props => <UserDashboard {...props}/>}></Route>
           </Switch>
 
       </div>

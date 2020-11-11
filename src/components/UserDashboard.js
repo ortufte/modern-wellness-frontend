@@ -3,20 +3,19 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import Nav from './Nav'
 import MedicineCabinet from './MedicineCabinet';
-import LogList from './LogList';
+import Logs from './Logs';
 
 
 const UserDashboard = ({ currentUser, match }) => {
 
     return (
+      
         <div className="user-dashboard">
 
             <Nav match={match}/>
-
-            <h2>Welcome { currentUser.data.attributes.name }</h2>
-    
+            { currentUser ? <h2>Welcome {currentUser.data.attributes.name} </h2> : null }
             <Route path={`${match.path}/medicine-cabinet`} component={MedicineCabinet}/>
-            <Route path={`${match.path}/log-list`} component={LogList}/>
+            <Route path={`${match.path}/logs`} component={Logs}/>
 
         </div>
     )
