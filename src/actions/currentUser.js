@@ -1,6 +1,7 @@
 import { resetLoginForm } from './loginForm';
 import { resetSignUpForm } from './signUpForm';
 import { setUserLogs } from './userLogs';
+import { setUserMedicines } from './userMedicines';
 
 //synchronous action creators
 
@@ -81,6 +82,7 @@ export const getCurrentUser = () => {
         else {
           dispatch(setCurrentUser(user))
           dispatch(setUserLogs(user.data.attributes.logs))
+          dispatch(setUserMedicines(user.data.attributes.medicines))
         }
       })
       .catch(err => console.error("Error:", err)); //JS Errors

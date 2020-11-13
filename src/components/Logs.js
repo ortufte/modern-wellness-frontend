@@ -32,9 +32,8 @@ class Logs extends React.Component {
     }   
 }
 
-const mapStateToProps = ({ currentUser, userLogs }) => {
+const mapStateToProps = ({ userLogs }) => {
     return {
-        currentUser,
         userLogs
     }
 }

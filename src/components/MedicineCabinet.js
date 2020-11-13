@@ -1,24 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-const MedicineCabinet = ({ currentUser }) => {
+class MedicineCabinet extends React.Component {
+    
+    render() {
 
-    const medicinesJSX = currentUser.data.attributes.medicines.map(medicine => <li key={ medicine.id }> { medicine.name } </li>)
+    const medicinesJSX = this.props.userMedicines.map(medicine =>
+         <li key={ medicine.id }>
+             <Link to={{pathname: `${this.props.match.url}/${medicine.id}`,
+                    state: {
+                        medicine: medicine
+                    }
+                }}>{medicine.name}
+                </Link> 
+            </li>)
+   
+        return (
+            <div className="medicine-cabinet">
 
-    return (
-        <div className="medicine-cabinet">
+                <h1> Medicine Cabinet </h1>
 
-            <h1> Medicine Cabinet </h1>
+                { medicinesJSX }
+                <br></br>
 
-            { medicinesJSX }
-
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
-const mapStateToProps = ({ currentUser }) => {
+const mapStateToProps = ({ userMedicines }) => {
     return {
-        currentUser
+        userMedicines
     }
 }
 
