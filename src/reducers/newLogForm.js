@@ -9,7 +9,7 @@ export default ( state = initialState, action ) => { // the state needs to be se
     switch (action.type) {
         case "UPDATE_NEW_LOG_FORM":
             return action.formData//formData from action
-        case "RESET_NEW-LOG_FORM":
+        case "RESET_NEW_LOG_FORM":
                 return initialState
         default:
             return state

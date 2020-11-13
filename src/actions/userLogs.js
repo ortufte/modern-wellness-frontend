@@ -53,7 +53,7 @@ export const createLog = (logFormData, userId, history) => {
             }
             else {
                 dispatch(addLog(log))
-                dispatch(resetNewLogForm)
+                dispatch(resetNewLogForm())
                 history.push(`/users/${log.user_id}/logs`)
             }
           })
