@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Nav from './Nav'
 import MedicineCabinet from './MedicineCabinet';
 import Logs from './Logs';
+import LogForm from './LogForm';
+import Log from './Log';
 
 
 const UserDashboard = ({ currentUser, match }) => {
@@ -14,8 +16,12 @@ const UserDashboard = ({ currentUser, match }) => {
 
             <Nav match={match}/>
             <h2>Welcome {currentUser.data.attributes.name} </h2> 
-            <Route path={`${match.path}/medicine-cabinet`} component={MedicineCabinet}/>
-            <Route path={`${match.path}/logs`} component={Logs}/>
+            <Switch>
+                <Route exact path={`${match.path}/logs/new`} component={LogForm}/>
+                <Route path={`${match.path}/logs/:logId`} component={Log}/>
+                <Route exact path={`${match.path}/medicine-cabinet`} component={MedicineCabinet}/>
+                <Route exact path={`${match.path}/logs`} component={Logs}/>
+            </Switch>
 
         </div>
     )

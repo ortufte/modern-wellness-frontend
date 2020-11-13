@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 // 1. We grab the action creator - (below)
 import { updateNewLogForm } from '../actions/newLogForm';
 import { createLog } from '../actions/userLogs';
+import { resetNewLogForm } from '../actions/newLogForm';
 
 // 3. Redux gives us back a prop called updatenNewLogForm
 // which when invoked actually redux will dispatch (back to action creator, 
 // then to reducer switch with data)
-const LogForm = ({ logFormData, updateNewLogForm, createLog, userId, history }) => {
+const LogForm = ({ logFormData, updateNewLogForm, createLog, userId, history, resetNewLogForm }) => {
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -24,6 +25,7 @@ const LogForm = ({ logFormData, updateNewLogForm, createLog, userId, history }) 
     const handleNewLog = event => {
         event.preventDefault()
         createLog(logFormData, userId, history)
+        resetNewLogForm()
     }
 
     return (
@@ -76,4 +78,4 @@ const mapStateToProps = state => {
 
 // 2. We pass the action creator to the redux connect function
 // using either mapDispatchToProps or the shorthand objext syntax as below
-export default connect(mapStateToProps, ({ updateNewLogForm, createLog }))(LogForm)
+export default connect(mapStateToProps, ({ updateNewLogForm, createLog, resetNewLogForm }))(LogForm)

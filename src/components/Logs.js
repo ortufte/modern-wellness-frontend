@@ -1,23 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
-import LogForm from './LogForm';
+import { Link } from 'react-router-dom';
 
 class Logs extends React.Component {
 
     render() {
 
-        const logsJSX = this.props.userLogs.map(log => <li key={ log.id }> { log.date } </li>)
+        const logsJSX = this.props.userLogs.map(log => 
+            
+            <li key={log.id}>
+                <Link to={{pathname:`${this.props.match.url}/${log.id}`, 
+                    state: {
+                        log: log
+                    }
+                }}>{log.date}
+                </Link>
+            </li>)
+
         return (
             <div className="logs">
 
                 <h1> User Logs </h1>
 
                 { logsJSX }
+                <br></br>
 
                 <Link to={`${this.props.match.url}/new`}>New Log</Link>
-          
-                <Route exact path={`${this.props.match.path}/new`} component={LogForm}/>
 
             </div>
         )
