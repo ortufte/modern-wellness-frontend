@@ -13,7 +13,7 @@ const UserDashboard = ({ currentUser, match }) => {
         <div className="user-dashboard">
 
             <Nav match={match}/>
-            { currentUser ? <h2>Welcome {currentUser.data.attributes.name} </h2> : null }
+            <h2>Welcome {currentUser.data.attributes.name} </h2> 
             <Route path={`${match.path}/medicine-cabinet`} component={MedicineCabinet}/>
             <Route path={`${match.path}/logs`} component={Logs}/>
 

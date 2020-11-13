@@ -1,5 +1,6 @@
 import { resetLoginForm } from './loginForm';
 import { resetSignUpForm } from './signUpForm';
+import { setUserLogs } from './userLogs';
 
 //synchronous action creators
 
@@ -79,6 +80,7 @@ export const getCurrentUser = () => {
         }
         else {
           dispatch(setCurrentUser(user))
+          dispatch(setUserLogs(user.data.attributes.logs))
         }
       })
       .catch(err => console.error("Error:", err)); //JS Errors
@@ -105,7 +107,6 @@ export const createUser = userData => {
       })
       .then(resp => resp.json())
       .then(user => {
-        console.log(user)
         if (user.error) {
           alert(user.error) //Server Errors
         }

@@ -14,6 +14,7 @@ class App extends React.Component {
   }
 
   render() {
+    
     return(
       <div className="app">
           <Switch>
@@ -21,7 +22,6 @@ class App extends React.Component {
             <Route exact path="/login" component={Login}></Route>            
             <Route path="/users/:userId" render={props => <UserDashboard {...props}/>}></Route>
           </Switch>
-
       </div>
     );
   }

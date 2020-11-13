@@ -3,7 +3,7 @@ import { resetNewLogForm } from './newLogForm'
 //synchronous action creators
 
 export const setUserLogs = logs => {
-    debugger
+
     return {
         type: "SET_USER_LOGS",
         logs
@@ -26,8 +26,6 @@ export const clearLogs = () => {
 //asynchronous action creators
 
 export const createLog = (logFormData, userId, history) => {
-        console.log(logFormData)
-        debugger
     return dispatch => {
         const backendCompatibleData = {
             log: {
@@ -54,7 +52,6 @@ export const createLog = (logFormData, userId, history) => {
               alert(log.error) //Server Errors
             }
             else {
-                console.log("create log resp", log)
                 dispatch(addLog(log))
                 dispatch(resetNewLogForm)
                 history.push(`/users/${log.user_id}/logs`)
