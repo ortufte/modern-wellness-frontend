@@ -1,4 +1,4 @@
-import { resetNewLogForm } from './newLogForm'
+import { resetLogForm } from './logForm'
 
 //synchronous action creators
 
@@ -53,7 +53,7 @@ export const createLog = (logFormData, userId, history) => {
             }
             else {
                 dispatch(addLog(log))
-                dispatch(resetNewLogForm())
+                dispatch(resetLogForm())
                 history.push(`/users/${log.user_id}/logs`)
             }
           })
