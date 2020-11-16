@@ -17,6 +17,13 @@ export const addLog = log => {
     }
 }
 
+export const deleteLogSuccess = log => {
+    return {
+        type: "DELETE_LOG",
+        log
+    }
+}
+
 export const clearLogs = () => {
     return {
         type: "CLEAR_LOGS"
@@ -45,18 +52,45 @@ export const createLog = (logFormData, userId, history) => {
             body: JSON.stringify(
                 backendCompatibleData
             )
-          })
-          .then(resp => resp.json())
-          .then(log => {
+        })
+        .then(resp => resp.json())
+        .then(log => {
             if (log.error) {
-              alert(log.error) //Server Errors
+                alert(log.error) //Server Errors
             }
             else {
                 dispatch(addLog(log))
                 dispatch(resetNewLogForm())
                 history.push(`/users/${log.user_id}/logs`)
             }
+        })
+    }
+}
+
+export const deleteLog = (logId, userId, history) => {
+    return dispatch => {
+        return fetch(`http://localhost:3001/api/v1/users/${userId}/logs/${logId}`, {
+            credentials: "include",
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+        })
+        .then(resp => resp.json())
+        .then(log => {
+            if (log.error) {
+                alert(log.error)
+            } 
+            else {
+                dispatch(deleteLogSuccess(log))
+                history.push(`/users/${userId}/logs`)
+            }
+        }) 
+        .catch((error) => {
+            console.error('Error:', error);
           })
     }
 }
+
+
 

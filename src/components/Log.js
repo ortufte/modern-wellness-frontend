@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { deleteLog } from '../actions/userLogs';
 
 const Log =  (props) => {
 
@@ -11,9 +13,9 @@ const Log =  (props) => {
             <p>Medicine: {logInfo.medicine}</p>
             <p>Symptom Level: {logInfo.symptom_level}</p>
             <p>Note: {logInfo.note}</p>
+            <button onClick={() => props.deleteLog(logInfo.id, logInfo.user_id, props.history)}>Delete Log</button>
         </div>
     ) 
-
 }
 
-export default Log
+export default connect(null, { deleteLog })(Log)
