@@ -17,6 +17,13 @@ export const addMedicine = medicine => {
     }
 }
 
+export const deleteMedicineSuccess = medicine => {
+    return {
+        type: "DELETE_MEDICINE",
+        medicine
+    }
+}
+
 
 export const clearMedicines = () => {
     return {
@@ -57,6 +64,31 @@ export const createMedicine = (medicineFormData, userId, history) => {
                 dispatch(resetMedicineForm())
                 history.push(`/users/${medicine.user_id}/medicine-cabinet`)
             }
+          })
+    }
+}
+
+export const deleteMedicine = (medicineId, userId, history) => {
+    return dispatch => {
+        return fetch(`http://localhost:3001/api/v1/users/${userId}/medicines/${medicineId}`, {
+            credentials: "include",
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+        })
+        .then(resp => resp.json())
+        .then(medicine => {
+            if (medicine.error) {
+                alert(medicine.error)
+            } 
+            else {
+                dispatch(deleteMedicineSuccess(medicine))
+                history.push(`/users/${userId}/medicine-cabinet`)
+            }
+        }) 
+        .catch((error) => {
+            console.error('Error:', error);
           })
     }
 }
