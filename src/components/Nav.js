@@ -10,6 +10,7 @@ const Nav = ({ match }) => {
         <div className="navigation">
             <NavLink to={`${match.url}/medicine-cabinet`}>Medicine Cabinet</NavLink>
             <NavLink to={`${match.url}/logs`}>Logs</NavLink>
+            <NavLink to={`${match.url}`}>Home</NavLink>
             <Logout />
         </div>
 
