@@ -5,7 +5,9 @@ import loginForm from './reducers/loginForm';
 import signUpForm from './reducers/signUpForm';
 import newLogForm from './reducers/newLogForm';
 import userLogs from './reducers/userLogs';
+import medicineForm from './reducers/medicineForm';
 import userMedicines from './reducers/userMedicines';
+
 
 
 const reducer = combineReducers({
@@ -14,8 +16,8 @@ const reducer = combineReducers({
   signUpForm: signUpForm,
   newLogForm: newLogForm,
   userLogs: userLogs,
+  medicineForm: medicineForm,
   userMedicines: userMedicines
-
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

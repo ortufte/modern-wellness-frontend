@@ -1,65 +1,58 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // 1. We grab the action creator - (below)
-import { updateNewLogForm } from '../actions/newLogForm';
-import { createLog } from '../actions/userLogs';
+import { updateMedicineForm } from '../actions/medicineForm';
+import { createMedicine } from '../actions/userMedicines';
 // 3. Redux gives us back a prop called updatenNewLogForm
 // which when invoked actually redux will dispatch (back to action creator, 
 // then to reducer switch with data)
-const LogForm = ({ logFormData, updateNewLogForm, createLog, userId, history }) => {
+const MedicineForm = ({ medicineFormData, updateMedicineForm, createMedicine, userId, history }) => {
 
     const handleInputChange = event => {
         const { name, value } = event.target
         const updatedFormInfo = {
-            ...logFormData, 
+            ...medicineFormData, 
             [name]:value
         }
     // 4. This is not an invocation of just the action creator
     // it's now Redux dispatching the action creator with the 
     // appropriate arguments. (below)
-        updateNewLogForm(updatedFormInfo)
+        updateMedicineForm(updatedFormInfo)
     }
 
-    const handleNewLog = event => {
+    const handleMedicine = event => {
         event.preventDefault()
-        createLog(logFormData, userId, history)
+        createMedicine(medicineFormData, userId, history)
     }
 
     return (
-        <div className="log-form">
-            <form className="log-form" onSubmit={handleNewLog}>
+        <div className="medicine-form">
+            <form className="medicine-form" onSubmit={handleMedicine}>
                 <input 
                     type="text" 
-                    name="date" 
-                    placeholder="Date"
+                    name="name" 
+                    placeholder="Name"
                     onChange={handleInputChange}
-                    value={logFormData.date}
+                    value={medicineFormData.name}
                 />
                 <input 
                     type="text" 
-                    name="medicine" 
-                    placeholder="Medicine"
+                    name="dosage" 
+                    placeholder="Dosage"
                     onChange={handleInputChange}
-                    value={logFormData.medicine}
-                />
-                <input 
-                    type="text" 
-                    name="symptomLevel" 
-                    placeholder="Symptom Level"
-                    onChange={handleInputChange}
-                    value={logFormData.symptomLevel}
+                    value={medicineFormData.dosage}
                 />
                   <input 
                     type="text" 
                     name="note" 
                     placeholder="Notes"
                     onChange={handleInputChange}
-                    value={logFormData.note}
+                    value={medicineFormData.note}
                 />
                 <input 
                     type="submit"
-                    name="Create Log"
-                    value="Create Log"
+                    name="Create Medicine"
+                    value="Create Medicine"
                 />
             </form>
         </div>
@@ -68,11 +61,11 @@ const LogForm = ({ logFormData, updateNewLogForm, createLog, userId, history }) 
 
 const mapStateToProps = state => {
     return {
-        logFormData: state.newLogForm,
+        medicineFormData: state.medicineForm,
         userId: state.currentUser.data.id
     }
 }
 
 // 2. We pass the action creator to the redux connect function
 // using either mapDispatchToProps or the shorthand objext syntax as below
-export default connect(mapStateToProps, ({ updateNewLogForm, createLog }))(LogForm)
+export default connect(mapStateToProps, ({ updateMedicineForm, createMedicine }))(MedicineForm)
