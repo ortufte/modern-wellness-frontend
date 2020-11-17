@@ -1,4 +1,4 @@
-import { resetNewLogForm } from './newLogForm'
+import { resetLogForm } from './logForm'
 
 //synchronous action creators
 
@@ -33,8 +33,11 @@ export const clearLogs = () => {
 //asynchronous action creators
 
 export const createLog = (logFormData, userId, history) => {
+ 
     return dispatch => {
+
         const backendCompatibleData = {
+
             log: {
                 date: logFormData.date,
                 medicine: logFormData.medicine,
@@ -43,6 +46,7 @@ export const createLog = (logFormData, userId, history) => {
                 user_id: userId,
             }
         }
+
         return fetch(`http://localhost:3001/api/v1/users/${userId}/logs`, {
             credentials: "include",
             method: 'POST',
@@ -59,8 +63,9 @@ export const createLog = (logFormData, userId, history) => {
                 alert(log.error) //Server Errors
             }
             else {
+
                 dispatch(addLog(log))
-                dispatch(resetNewLogForm())
+                dispatch(resetLogForm())
                 history.push(`/users/${log.user_id}/logs`)
             }
         })

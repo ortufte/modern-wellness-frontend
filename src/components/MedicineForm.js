@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 // 1. We grab the action creator - (below)
 import { updateMedicineForm } from '../actions/medicineForm';
 import { createMedicine } from '../actions/userMedicines';
-// 3. Redux gives us back a prop called updatenNewLogForm
+// 3. Redux gives us back a prop called updateLogForm
 // which when invoked actually redux will dispatch (back to action creator, 
 // then to reducer switch with data)
 const MedicineForm = ({ medicineFormData, updateMedicineForm, createMedicine, userId, history }) => {
