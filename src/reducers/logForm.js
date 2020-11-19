@@ -12,7 +12,6 @@ export default ( state = initialState, action ) => { // the state needs to be se
         case "RESET_LOG_FORM":
                 return initialState
         case "SET_LOG_FORM_DATA":
-            debugger
             return action.logFormData
         default:
             return state

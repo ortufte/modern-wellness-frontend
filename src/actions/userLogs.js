@@ -79,8 +79,6 @@ export const createLog = (logFormData, userId, history) => {
 }
 
 export const editLog = (logFormData, userId, history, logId) => {
-    console.log(userId)
-    console.log("editLogaction", logId)
     return dispatch => {
         const backendCompatibleData = {
             log: {
@@ -89,7 +87,6 @@ export const editLog = (logFormData, userId, history, logId) => {
                 symptom_level: logFormData.symptomLevel,
                 note: logFormData.note,
                 user_id: userId,
-                id: logId
             }
         }
         return fetch(`http://localhost:3001/api/v1/users/${userId}/logs/${logId}`, {

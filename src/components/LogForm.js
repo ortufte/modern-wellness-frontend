@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 // 1. We grab the action creator - (below)
 import { updateLogForm } from '../actions/logForm';
-import { setLogFormData } from '../actions/logForm';
 // 3. Redux gives us back a prop called updatenLogForm
 // which when invoked actually redux will dispatch (back to action creator, 
 // then to reducer switch with data)
 
-const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm, buttonLabel, log }) => {
+const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm, buttonLabel, history }) => {
     
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -25,35 +24,43 @@ const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm, buttonLabe
 
     const handleSubmit = event => {
         event.preventDefault()
-        handleLogForm(logFormData, userId)
+        handleLogForm(logFormData, userId, history)
     }
 
 
     return (
         <div className="log-form">
             <form className="log-form" onSubmit={handleSubmit}>
+                <label htmlFor="date">Date: </label>
                 <input 
+                    id="date"
                     type="text" 
                     name="date" 
                     placeholder="Date"
                     onChange={handleInputChange}
                     value={logFormData.date}
                 />
+                <label htmlFor="medicine">Medicine: </label>
                 <input 
+                    id="medicine"
                     type="text" 
                     name="medicine" 
                     placeholder="Medicine"
                     onChange={handleInputChange}
                     value={logFormData.medicine}
                 />
+                <label htmlFor="symptomLevel">Symptom Level: </label>
                 <input 
+                    id="symptomLevel"
                     type="text" 
                     name="symptomLevel" 
                     placeholder="Symptom Level"
                     onChange={handleInputChange}
                     value={logFormData.symptomLevel}
                 />
+                <label htmlFor="note">Notes: </label>
                   <input 
+                    id="note"
                     type="text" 
                     name="note" 
                     placeholder="Notes"

@@ -19,12 +19,12 @@ const UserDashboard = ({ currentUser, match }) => {
             <h2>Welcome {currentUser.data.attributes.name} </h2> 
             <Switch>
                 <Route exact path={`${match.path}/logs/new`} component={NewLog}/>
-                <Route exact path={`${match.path}/logs/:logId`} component={Log}/>
+                <Route path={`${match.path}/logs/:logId/edit`} component={EditLog}/>
+                <Route path={`${match.path}/logs/:logId`} component={Log}/>
                 <Route exact path={`${match.path}/logs`} component={Logs}/>
                 <Route exact path={`${match.path}/medicine-cabinet/new`} component={MedicineForm}/>
                 <Route path={`${match.path}/medicine-cabinet/:medicineId`} component={Medicine}/>
                 <Route exact path={`${match.path}/medicine-cabinet`} component={MedicineCabinet}/>
-                <Route path={`${match.path}/logs/:logId/edit`} component={EditLog}/>
             </Switch>
 
         </div>

@@ -14,10 +14,10 @@ return {
 export const setLogFormData = log => {
 
     const logFormData = {
-        date: log.date,
-        medicine: log.medicine,
-        symptomLevel: log.symptom_level,
-        note: log.note
+        date: log ? log.date : "",
+        medicine: log ? log.medicine : "",
+        symptomLevel: log ? log.symptom_level : "",
+        note: log? log.note : ""
     }
 
     return {
