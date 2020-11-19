@@ -1,19 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteMedicine } from '../actions/userMedicines';
+import { Link } from 'react-router-dom'
 
 const Medicine =  (props) => {
 
-    const medicineInfo = props.location.state.medicine
+    const medicineId = props.match.params.medicineId
+    const medicine = props.userMedicines.find(medicine => medicine.id === parseInt(medicineId))
+
     return (
-        <div className="log">
+        <div className="medicine">
             <h3>Medicine Component</h3>
-            <p>Name: {medicineInfo.name}</p>
-            <p>Dosage: {medicineInfo.dosage}</p>
-            <p>Note: {medicineInfo.note}</p>
-            <button onClick={() => props.deleteMedicine(medicineInfo.id, medicineInfo.user_id, props.history)}>Delete Medicine</button>
+            <p>Name: {medicine ? medicine.name : ""}</p>
+            <p>Dosage: {medicine ? medicine.dosage : ""}</p>
+            <p>Note: {medicine ? medicine.note : ""}</p>
+            <button onClick={() => props.deleteMedicine(medicine.id, medicine.user_id, props.history)}>Delete Medicine</button>
+            <Link to={`${props.match.url}/edit`}>Edit Medicine</Link> 
         </div>
     ) 
 }
 
-export default connect(null, { deleteMedicine })(Medicine)
+const mapStateToProps = ({ userMedicines }) => {
+    return {
+        userMedicines
+    }
+}
+
+export default connect(mapStateToProps, { deleteMedicine })(Medicine)

@@ -9,12 +9,7 @@ class Logs extends React.Component {
         const logsJSX = this.props.userLogs.map(log => 
             
             <li key={log.id}>
-                <Link to={{pathname:`${this.props.match.url}/${log.id}`, 
-                    state: {
-                        log: log
-                    }
-                }}>{log.date}
-                </Link>
+                <Link to={{pathname:`${this.props.match.url}/${log.id}`}}>{log.date}</Link>
             </li>)
 
         return (
@@ -26,6 +21,7 @@ class Logs extends React.Component {
                 <br></br>
 
                 <Link to={`${this.props.match.url}/new`}>New Log</Link>
+            
 
             </div>
         )

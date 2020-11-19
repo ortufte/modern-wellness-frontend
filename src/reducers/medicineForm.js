@@ -10,6 +10,8 @@ export default ( state = initialState, action ) => { // the state needs to be se
             return action.formData//formData from action
         case "RESET_MEDICINE_FORM":
                 return initialState
+        case "SET_MEDICINE_FORM_DATA":
+            return action.medicineFormData
         default:
             return state
     }

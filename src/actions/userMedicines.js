@@ -24,6 +24,13 @@ export const deleteMedicineSuccess = medicine => {
     }
 }
 
+export const editMedicineSuccess = medicine => {
+    return {
+        type: "EDIT_MEDICINE",
+        medicine
+    }
+}
+
 
 export const clearMedicines = () => {
     return {
@@ -64,6 +71,43 @@ export const createMedicine = (medicineFormData, userId, history) => {
                 dispatch(resetMedicineForm())
                 history.push(`/users/${medicine.user_id}/medicine-cabinet`)
             }
+          })
+    }
+}
+
+export const editMedicine = (medicineFormData, userId, history, medicineId) => {
+    return dispatch => {
+        const backendCompatibleData = {
+            medicine: {
+                name: medicineFormData.name,
+                dosage: medicineFormData.dosage,
+                note: medicineFormData.note,
+                user_id: userId,
+            }
+        }
+        return fetch(`http://localhost:3001/api/v1/users/${userId}/medicines/${medicineId}`, {
+            credentials: "include", 
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(
+                  backendCompatibleData
+              )
+        })
+        .then(resp => resp.json())
+        .then(medicine => {
+            if (medicine.error) {
+                alert(medicine.error)
+            } 
+            else {
+                dispatch(editMedicineSuccess(medicine))
+                dispatch(resetMedicineForm)
+                history.push(`/users/${userId}/medicine-cabinet/${medicineId}`)
+            }
+        }) 
+        .catch((error) => {
+            console.error('Error:', error);
           })
     }
 }
