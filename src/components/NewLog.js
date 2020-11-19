@@ -9,8 +9,7 @@ const AddLog = ({ history, createLog }) => {
     const handleSubmit = (logFormData, userId) => {
         createLog(logFormData, userId, history)
       }
-
-
+      
     return (
         <div className="addLog">
             <h1> Create Log </h1>

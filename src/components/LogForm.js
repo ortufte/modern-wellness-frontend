@@ -2,11 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 // 1. We grab the action creator - (below)
 import { updateLogForm } from '../actions/logForm';
+import { setLogFormData } from '../actions/logForm';
 // 3. Redux gives us back a prop called updatenLogForm
 // which when invoked actually redux will dispatch (back to action creator, 
 // then to reducer switch with data)
-const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm }) => {
 
+const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm, buttonLabel, log }) => {
+    
     const handleInputChange = event => {
         const { name, value } = event.target
         const updatedFormInfo = {
@@ -19,10 +21,13 @@ const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm }) => {
         updateLogForm(updatedFormInfo)
     }
 
+    // I need to update log form when I render this form under EditLog
+
     const handleSubmit = event => {
         event.preventDefault()
         handleLogForm(logFormData, userId)
     }
+
 
     return (
         <div className="log-form">
@@ -57,8 +62,8 @@ const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm }) => {
                 />
                 <input 
                     type="submit"
-                    name="Create Log"
-                    value="Create Log"
+                    name="Log"
+                    value={buttonLabel}
                 />
             </form>
         </div>

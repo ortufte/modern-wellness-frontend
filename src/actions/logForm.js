@@ -11,4 +11,19 @@ return {
     }
 }
 
+export const setLogFormData = log => {
+
+    const logFormData = {
+        date: log.date,
+        medicine: log.medicine,
+        symptomLevel: log.symptom_level,
+        note: log.note
+    }
+
+    return {
+        type: "SET_LOG_FORM_DATA",
+        logFormData
+    }
+}
+
 //asynchronous action creators
