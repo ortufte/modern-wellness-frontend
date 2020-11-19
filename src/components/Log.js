@@ -11,7 +11,6 @@ const Log =  (props) => {
 
     return (
         <div className="log">
-            
             <h3>Log Component</h3>
             <p>Date: {log ? log.date : ""}</p>
             <p>Medicine: {log ? log.medicine : ""}</p>

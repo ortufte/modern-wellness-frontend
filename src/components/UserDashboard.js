@@ -5,10 +5,11 @@ import Nav from './Nav'
 import MedicineCabinet from './MedicineCabinet';
 import Logs from './Logs';
 import Log from './Log';
-import MedicineForm from './MedicineForm';
 import Medicine from './Medicine';
 import NewLog from './NewLog';
-import EditLog from './EditLog'
+import EditLog from './EditLog';
+import NewMedicine from './NewMedicine'
+import EditMedicine from './EditMedicine'
 
 const UserDashboard = ({ currentUser, match }) => {
     return (
@@ -22,7 +23,8 @@ const UserDashboard = ({ currentUser, match }) => {
                 <Route path={`${match.path}/logs/:logId/edit`} component={EditLog}/>
                 <Route path={`${match.path}/logs/:logId`} component={Log}/>
                 <Route exact path={`${match.path}/logs`} component={Logs}/>
-                <Route exact path={`${match.path}/medicine-cabinet/new`} component={MedicineForm}/>
+                <Route exact path={`${match.path}/medicine-cabinet/new`} component={NewMedicine}/>
+                <Route path={`${match.path}/medicine-cabinet/:medicineId/edit`} component={EditMedicine}/>
                 <Route path={`${match.path}/medicine-cabinet/:medicineId`} component={Medicine}/>
                 <Route exact path={`${match.path}/medicine-cabinet`} component={MedicineCabinet}/>
             </Switch>

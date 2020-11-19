@@ -4,7 +4,7 @@ import { createLog } from '../actions/userLogs';
 import LogForm from './LogForm';
 import { connect } from 'react-redux';
 
-const AddLog = ({ history, createLog }) => {
+const NewLog = ({ history, createLog }) => {
 
     const handleSubmit = (logFormData, userId) => {
         createLog(logFormData, userId, history)
@@ -21,4 +21,4 @@ const AddLog = ({ history, createLog }) => {
     )
 }
 
-export default connect(null, { createLog })(AddLog)
+export default connect(null, { createLog })(NewLog)
