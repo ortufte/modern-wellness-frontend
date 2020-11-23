@@ -1,28 +1,35 @@
 import React from 'react';
 import './App.css';
-import { makeStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux'
 import Home from './components/Home';
-import { CssBaseline } from '@material-ui/core';
+import { getCurrentUser } from './actions/currentUser';
+import { Switch, Route } from 'react-router-dom';
+import GuardedRoute from './components/GuardedRoute';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
+import UserDashboard from './components/UserDashboard';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    minHeight: '100vh',
-    backgroundImage: `url(${process.env.PUBLIC_URL + '/images/homeImage.jpg'})`,
-    backgroundSize: 'cover',
+class App extends React.Component {
+
+  componentDidMount() {
+    this.props.getCurrentUser()
   }
-}))
 
-const App = () => {
-
-  const classes = useStyles()
-
+  render() {
     return(
-      <div className={classes.root}>
-        <CssBaseline />
-        <Home />
-      </div>
+      <div>
+        <Switch>
+          <Route exact path="/" component={Home}></Route>
+          <Route exact path="/signup" component={SignUp}></Route>                    
+          <Route exact path="/login" component={Login}></Route> 
+          <GuardedRoute path="/users/:userId" component={UserDashboard} />           
+          {/* <Route path="/users/:userId" render={props => <UserDashboard {...props}/>}></Route> */}
+        </Switch>
+    </div>
+
     );
+  }
 }
 
-export default App;
+export default connect(null, { getCurrentUser })(App);
 

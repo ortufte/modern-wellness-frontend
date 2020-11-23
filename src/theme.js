@@ -1,6 +1,4 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import orange from '@material-ui/core/colors/orange';
-import green from '@material-ui/core/colors/green';
 
 const theme = createMuiTheme({
   palette: {
@@ -8,9 +6,19 @@ const theme = createMuiTheme({
       main: '#852508',
     },
     secondary: {
-      main: green[500],
+      main: "#ffffff",
     },
   },
+  typography: {
+    h1: {
+      fontFamily: "Sail",
+      fontSize: '8rem',
+    },
+    subtitle1: {
+      fontFamily: "Montserrat",
+      fontSize: '2rem',
+    },
+  }
 });
 
 export default theme;

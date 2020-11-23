@@ -6,6 +6,7 @@ import { setUserMedicines } from './userMedicines';
 //synchronous action creators
 
 export const setCurrentUser = (user) => {
+  debugger
     return {
         type: "SET_CURRENT_USER",
         payload: user
@@ -89,7 +90,7 @@ export const getCurrentUser = () => {
   } 
 }
 
-export const createUser = userData => { 
+export const createUser = (userData, history) => { 
   return dispatch => {
     const userInfo = {
       user: userData
@@ -115,6 +116,7 @@ export const createUser = userData => {
         else {
           dispatch(setCurrentUser(user))
           dispatch(resetSignUpForm())
+          history.push(`/users/${user.data.id}`)
            
            //need to update to only grab name and email, not password
           // this.setState({ currentUser: user }) - vanilla redux

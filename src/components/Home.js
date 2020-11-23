@@ -1,41 +1,38 @@
 import React from 'react';
-import SignUp from './SignUp';
-import Login from './Login';
-import UserDashboard from './UserDashboard';
-import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import { getCurrentUser } from '../actions/currentUser';
 import HomeNav from './HomeNav';
-import GuardedRoute from './GuardedRoute';
+import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        backgroundImage: `url(${process.env.PUBLIC_URL + '/images/homeImage.jpg'})`,
+        backgroundSize: 'cover',
+        height: '100vh',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: 'auto'
+      },
+  }))
 
+const Home = () => {
 
-class Home extends React.Component {
+    const classes = useStyles()
 
-    componentDidMount() {
-        this.props.getCurrentUser()
-      }
-
-    render() {
-        return (
-            <div className="home">
-                <HomeNav />
-                <Switch>
-                    <Route exact path="/signup" component={SignUp}></Route>                    
-                    <Route exact path="/login" component={Login}></Route> 
-                    <GuardedRoute path="/users/:userId" component={UserDashboard} />           
-                    {/* <Route path="/users/:userId" render={props => <UserDashboard {...props}/>}></Route> */}
-                </Switch>
-
+    return (
+        <div className={classes.root}>
+   
+            <HomeNav />
+            <div>
+                <Typography variant="h1" color="secondary">eudaimonia</Typography>
+                <Typography variant="subtitle1" color="secondary">(n.) lit. "human flourishing";</Typography>
+                <Typography variant="subtitle1" color="secondary">a contented state of being</Typography>
+                <Typography variant="subtitle1" color="secondary">healthy, happy, and prosperous.</Typography>
             </div>
-        )
-    }
+
+        </div> 
+
+    )
 }
 
-const mapStateToProps = (state) => {
-    return {
-      loggedIn: !!state.currentUser
-    }
-  }
-
-  export default connect(mapStateToProps, { getCurrentUser })(Home);
+  export default Home;
