@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { getCurrentUser } from '../actions/currentUser';
 import HomeNav from './HomeNav';
+import GuardedRoute from './GuardedRoute';
 
 
 
@@ -18,12 +19,12 @@ class Home extends React.Component {
     render() {
         return (
             <div className="home">
-
                 <HomeNav />
                 <Switch>
                     <Route exact path="/signup" component={SignUp}></Route>                    
-                    <Route exact path="/login" component={Login}></Route>            
-                    <Route path="/users/:userId" render={props => <UserDashboard {...props}/>}></Route>
+                    <Route exact path="/login" component={Login}></Route> 
+                    <GuardedRoute path="/users/:userId" component={UserDashboard} />           
+                    {/* <Route path="/users/:userId" render={props => <UserDashboard {...props}/>}></Route> */}
                 </Switch>
 
             </div>
