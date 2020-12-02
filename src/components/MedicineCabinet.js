@@ -1,33 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import NewMedicine from './NewMedicine'
+import { Typography, Button } from '@material-ui/core';
 
 class MedicineCabinet extends React.Component {
     
     render() {
 
         const medicinesJSX = this.props.userMedicines.map(medicine =>
-            <li key={medicine.id}>
-                <Link to={{pathname: `${this.props.match.url}/${medicine.id}`,
-                        state: {
-                            medicine: medicine
-                        }
-                    }}>{medicine.name}
-                    </Link> 
-                </li>)
+
+        <p key={medicine.id}>
+            <Button component={Link} to={`${this.props.match.url}/${medicine.id}`} size="large" variant="text">
+                <Typography variant="h4" color="secondary">{medicine.name}</Typography>
+            </Button>
+        </p>)
+
+        return (
+            <div className="medicine-cabinet" >
     
-            return (
-                <div className="medicine-cabinet">
-
-                    <h1> Medicine Cabinet </h1>
-
-                    { medicinesJSX }
-                    <br></br>
-
-                    <Link to={`${this.props.match.url}/new`}>New Medicine</Link>
-
-                </div>
-            )
+                <Typography variant="h3" color="secondary" style={{padding: 20}}>Medicine Cabinet</Typography>
+        
+                { medicinesJSX }
+           
+                <NewMedicine />
+            </div>
+        )
     }
 }
 

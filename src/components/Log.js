@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import EditLog from './EditLog'
 import { deleteLog } from '../actions/userLogs';
-import { Link } from 'react-router-dom'
+import { Button, Typography } from '@material-ui/core'
 
 
 const Log =  (props) => {
@@ -11,13 +12,17 @@ const Log =  (props) => {
 
     return (
         <div className="log">
-            <h3>Log Component</h3>
-            <p>Date: {log ? log.date : ""}</p>
-            <p>Medicine: {log ? log.medicine : ""}</p>
-            <p>Symptom Level: {log ? log.symptom_level : "" }</p>
-            <p>Note: {log ? log.note : ""}</p>
-            <button onClick={() => props.deleteLog(log.id, log.user_id, props.history)}>Delete Log</button>
-            <Link to={`${props.match.url}/edit`}>Edit Log</Link> 
+            <Typography variant="h3" color="secondary" style={{padding: 20}}>Log Details</Typography>
+            <br></br>
+            <Typography variant="h4" color="secondary">date: {log ? log.date : ""}</Typography>
+            <Typography variant="h4" color="secondary">medicine: {log ? log.medicine : ""}</Typography>
+            <Typography variant="h4" color="secondary">symptom level: {log ? log.symptom_level : "" }</Typography>
+            <Typography variant="h4" color="secondary">notes: {log ? log.note : ""}</Typography>
+            <br></br>
+            <EditLog />
+            <Button onClick={() => props.deleteLog(log.id, log.user_id, props.history)} size="large" variant="text">
+                <Typography variant="subtitle2" >Delete Log</Typography>
+            </Button>
 
         </div>
     ) 

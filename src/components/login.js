@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateLoginForm } from '../actions/loginForm'
 import { login } from '../actions/currentUser' //- login action from currentuser actions
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Typography } from '@material-ui/core'
 import { withRouter } from "react-router";
+import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForward';
 
 const Login = ({ loginFormData, updateLoginForm, login, history })  => { 
 
@@ -33,42 +34,66 @@ const Login = ({ loginFormData, updateLoginForm, login, history })  => {
     
     return (
         <div className="login">
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
                 Login
             </Button>
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Login</DialogTitle>
+            
+            <Dialog 
+                open={open} 
+                onClose={handleClose} 
+                aria-labelledby="form-dialog-title">
+                
+                <DialogTitle id="form-dialog-title"><Typography variant="h3" color="primary">Login</Typography></DialogTitle>
+               
                 <DialogContent>
+                    
                     <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We will send updates
-                        occasionally.
+                        <Typography variant="h5" >Enter your email address and password to login...</Typography>
                     </DialogContentText>
-                    <form className="login" onSubmit={handleSubmit}> 
-                        <input 
-                            type="text" 
+
+                    <form onSubmit={handleSubmit}> 
+                        <TextField 
+                            label="Email"
                             name="email" 
                             placeholder="Email Address"
+                            style={{ margin: 8,
+                            width: 200 }}
                             onChange={handleInputChange} //initial ({name, value}) is destructuring the event
                             value={loginFormData.email} //this makes this a controlled component
                         />
-                        <input 
+                        <TextField 
+                            label="Password"
                             type="password"
                             name="password"
                             placeholder="Password"
+                            style={{ margin: 8,
+                            width: 200 }}
                             onChange={handleInputChange}
                             value={loginFormData.password} //this makes this a controlled component
                         />
-                        <input 
+                        <Button 
                             type="submit" 
                             name="Login" 
-                        />
+                            style={{ margin: 15 }}
+                            color="primary"
+                        ><ArrowForwardRoundedIcon fontSize="large"></ArrowForwardRoundedIcon>
+                        </Button>
+                        
                     </form>
+
                 </DialogContent>
+
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
+                    <Button 
+                        onClick={handleClose} 
+                        color="primary"
+                        variant="outlined"
+                        size="small"
+                        style={{ margin: 20 }}
+                        >Cancel
                     </Button>
                 </DialogActions>
+
             </Dialog>
         </div>
     )

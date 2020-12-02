@@ -5,9 +5,10 @@ import { updateLogForm } from '../actions/logForm';
 // 3. Redux gives us back a prop called updatenLogForm
 // which when invoked actually redux will dispatch (back to action creator, 
 // then to reducer switch with data)
+import { TextField, Button } from '@material-ui/core';
 
 const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm, buttonLabel, history }) => {
-    
+
     const handleInputChange = event => {
         const { name, value } = event.target
         const updatedFormInfo = {
@@ -20,60 +21,60 @@ const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm, buttonLabe
         updateLogForm(updatedFormInfo)
     }
 
-    // I need to update log form when I render this form under EditLog
-
     const handleSubmit = event => {
         event.preventDefault()
         handleLogForm(logFormData, userId, history)
     }
 
-
     return (
-        <div className="log-form">
-            <form className="log-form" onSubmit={handleSubmit}>
-                <label htmlFor="date">Date: </label>
-                <input 
-                    id="date"
-                    type="text" 
-                    name="date" 
-                    placeholder="Date"
-                    onChange={handleInputChange}
-                    value={logFormData.date}
-                />
-                <label htmlFor="medicine">Medicine: </label>
-                <input 
-                    id="medicine"
-                    type="text" 
-                    name="medicine" 
-                    placeholder="Medicine"
-                    onChange={handleInputChange}
-                    value={logFormData.medicine}
-                />
-                <label htmlFor="symptomLevel">Symptom Level: </label>
-                <input 
-                    id="symptomLevel"
-                    type="text" 
-                    name="symptomLevel" 
-                    placeholder="Symptom Level"
-                    onChange={handleInputChange}
-                    value={logFormData.symptomLevel}
-                />
-                <label htmlFor="note">Notes: </label>
-                  <input 
-                    id="note"
-                    type="text" 
-                    name="note" 
-                    placeholder="Notes"
-                    onChange={handleInputChange}
-                    value={logFormData.note}
-                />
-                <input 
-                    type="submit"
-                    name="Log"
-                    value={buttonLabel}
-                />
-            </form>
-        </div>
+        <form className="log-form" onSubmit={handleSubmit}>
+            <TextField 
+                id="date" 
+                label="Date" 
+                name="date" 
+                placeholder="Date"
+                fullWidth
+                onChange={handleInputChange}
+                value={logFormData.date}
+            />
+            <TextField
+                id="medicine"
+                label="Medicine "
+                name="medicine" 
+                placeholder="Medicine"
+                fullWidth
+                onChange={handleInputChange}
+                value={logFormData.medicine}
+            />
+            <TextField
+                id="symptomLevel"
+                label="Symptom Level "
+                name="symptomLevel" 
+                placeholder="Symptom Level"
+                fullWidth
+                onChange={handleInputChange}
+                value={logFormData.symptomLevel}
+            />
+            <TextField
+                id="note"
+                label="Notes "
+                name="note" 
+                placeholder="Notes"
+                fullWidth
+                multiline
+                onChange={handleInputChange}
+                value={logFormData.note}
+            />
+            <Button
+                type="submit"
+                color="primary"
+                variant="text"
+                size="medium"
+                style={{ marginTop: 20 }}
+                fullWidth
+                value={buttonLabel}>{buttonLabel}
+            </Button>
+        </form>
     )
 }
 

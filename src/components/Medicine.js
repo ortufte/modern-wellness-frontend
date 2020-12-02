@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import EditMedicine from './EditMedicine'
 import { deleteMedicine } from '../actions/userMedicines';
-import { Link } from 'react-router-dom'
+import { Button, Typography } from '@material-ui/core';
 
 const Medicine =  (props) => {
 
@@ -9,13 +10,20 @@ const Medicine =  (props) => {
     const medicine = props.userMedicines.find(medicine => medicine.id === parseInt(medicineId))
 
     return (
-        <div className="medicine">
-            <h3>Medicine Component</h3>
-            <p>Name: {medicine ? medicine.name : ""}</p>
-            <p>Dosage: {medicine ? medicine.dosage : ""}</p>
-            <p>Note: {medicine ? medicine.note : ""}</p>
-            <button onClick={() => props.deleteMedicine(medicine.id, medicine.user_id, props.history)}>Delete Medicine</button>
-            <Link to={`${props.match.url}/edit`}>Edit Medicine</Link> 
+        <div className="medicine" >
+            <Typography variant="h3" color="secondary" style={{padding: 20}}>Medicine Details</Typography>
+            <br></br>
+            <Typography variant="h4" color="secondary">name: {medicine ? medicine.name : ""}</Typography>
+            <Typography variant="h4" color="secondary">dosage: {medicine ? medicine.dosage : ""}</Typography>
+            <Typography variant="h4" color="secondary">notes: {medicine ? medicine.note : ""}</Typography>
+            <br></br>
+            <EditMedicine />
+            {/* <Button href={`${props.match.url}/edit`} size="large" variant="text">
+                <Typography variant="subtitle2">Edit Medicine</Typography>
+            </Button> */}
+            <Button onClick={() => props.deleteMedicine(medicine.id, medicine.user_id, props.history)} size="large" variant="text">
+                <Typography variant="subtitle2">Delete Medicine</Typography>
+            </Button>
         </div>
     ) 
 }

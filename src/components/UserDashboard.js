@@ -1,33 +1,68 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import Nav from './Nav'
 import MedicineCabinet from './MedicineCabinet';
 import Logs from './Logs';
+import Profile from './Profile'
 import Log from './Log';
 import Medicine from './Medicine';
-import NewLog from './NewLog';
-import EditLog from './EditLog';
-import NewMedicine from './NewMedicine'
-import EditMedicine from './EditMedicine'
+import GuardedRoute from './GuardedRoute';
+import { makeStyles } from '@material-ui/core/styles';
+import { Paper } from '@material-ui/core';
 
-const UserDashboard = ({ currentUser, match }) => {
+
+import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles((theme) => ({
+    userDashboard: {
+        backgroundSize: 'cover',
+        backgroundImage: `url(${process.env.PUBLIC_URL + '/images/userDashboardImage.jpeg'})`,
+        height: '100vh',
+        display: "flex",
+        alignItems: "center",
+      },
+      paper: {
+        textAlign: 'center',
+        backgroundColor: 'rgba(0,0,0, 0.5)',
+      },
+  }))
+
+const UserDashboard = ({ currentUser, match, history }) => {
+
+    const classes = useStyles()
+
     return (
       
-        <div className="user-dashboard">
+        <div className={classes.userDashboard}>
 
-            <Nav match={match}/>
-            <h2>Welcome {currentUser.data.attributes.name} </h2> 
-            <Switch>
-                <Route exact path={`${match.path}/logs/new`} component={NewLog}/>
-                <Route path={`${match.path}/logs/:logId/edit`} component={EditLog}/>
-                <Route path={`${match.path}/logs/:logId`} component={Log}/>
-                <Route exact path={`${match.path}/logs`} component={Logs}/>
-                <Route exact path={`${match.path}/medicine-cabinet/new`} component={NewMedicine}/>
-                <Route path={`${match.path}/medicine-cabinet/:medicineId/edit`} component={EditMedicine}/>
-                <Route path={`${match.path}/medicine-cabinet/:medicineId`} component={Medicine}/>
-                <Route exact path={`${match.path}/medicine-cabinet`} component={MedicineCabinet}/>
-            </Switch>
+            <Grid container
+                spacing="8"
+                direction="column"
+                justify="flex-start"
+                alignItems="stretch"
+            >
+                <Grid item  >
+                    <Paper className={classes.paper}>
+                        <Nav match={match} history={history}/>
+                    </Paper>
+                </Grid>
+                
+                <Grid item >
+                    <Paper className={classes.paper} >
+                 
+                        <Switch>
+                            <GuardedRoute path={`${match.path}/logs/:logId`} component={Log}/>
+                            <GuardedRoute exact path={`${match.path}/logs`} component={Logs}/>
+                            <GuardedRoute path={`${match.path}/medicine-cabinet/:medicineId`} component={Medicine}/>
+                            <GuardedRoute exact path={`${match.path}/medicine-cabinet`} component={MedicineCabinet}/>
+                            <GuardedRoute exact path={`${match.path}/profile`} component={Profile}/>
+                        </Switch>
+       
+                    </Paper>
+                </Grid>
+
+            </Grid>
 
         </div>
     )

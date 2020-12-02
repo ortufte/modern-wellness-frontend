@@ -1,10 +1,12 @@
-
 import React from 'react';
 import { editLog } from '../actions/userLogs';
 import LogForm from './LogForm';
 import { connect } from 'react-redux';
 import { setLogFormData } from '../actions/logForm';
-import { useEffect } from 'react'
+import { useEffect } from 'react';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@material-ui/core';
+import { withRouter } from 'react-router';
+
 
 const EditLog = ({ history, editLog, match, userLogs, setLogFormData }) => {
     
@@ -17,15 +19,59 @@ const EditLog = ({ history, editLog, match, userLogs, setLogFormData }) => {
 
     const handleSubmit = (logFormData, userId) => {
         editLog(logFormData, userId, history, logId )
+        handleClose()
     }
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <div className="editLog">
-            <h1> Edit Log </h1>
-            <LogForm 
-                buttonLabel="Edit Log" 
-                handleLogForm={handleSubmit}
-            />
+            <Button size="large" variant="text" onClick={handleClickOpen}>
+                <Typography variant="subtitle2">Edit Log</Typography>
+            </Button>
+
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labeledby="form-dialog-title"
+                maxWidth="sm"
+                margin="auto">
+
+                <DialogTitle id="form-dialog-title"><Typography variant="h4" color="primary">Edit Log</Typography></DialogTitle>
+
+                <DialogContent>
+
+                    <DialogContentText>
+                        <Typography variant="h5" >Edit log information...</Typography>
+                    </DialogContentText>
+
+                        <LogForm 
+                            buttonLabel="Save" 
+                            handleLogForm={handleSubmit}
+                        />
+
+                </DialogContent>
+
+                <DialogActions>
+                        <Button 
+                            onClick={handleClose} 
+                            color="primary"
+                            variant="outlined"
+                            size="small"
+                            style={{ margin: 20 }}
+                            >Cancel
+                        </Button>
+                    </DialogActions>
+
+            </Dialog>
         </div>
     )
 }
@@ -36,4 +82,4 @@ const mapStateToProps = ({ userLogs }) => {
     }
 }
 
-export default connect(mapStateToProps, { editLog, setLogFormData })(EditLog)
+export default withRouter(connect(mapStateToProps, { editLog, setLogFormData })(EditLog))

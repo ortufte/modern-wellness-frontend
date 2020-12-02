@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateSignUpForm } from '../actions/signUpForm';
 import { createUser } from '../actions/currentUser';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Typography } from '@material-ui/core'
 import { withRouter } from "react-router";
-
+import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForward';
 
 const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history }) => {
 
@@ -33,53 +33,80 @@ const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history }) => {
     };
 
     return (
-        <div className="signup">
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        <div className="signup" >
+            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
                 Sign Up
             </Button>
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Sign Up</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We will send updates
-                        occasionally.
-                    </DialogContentText>
 
-                    <form className="signup" onSubmit={handleSignUp}>
-                        <input 
-                        type="text" 
-                        name="name" 
-                        placeholder="Name"
-                        onChange={handleInputChange}
-                        value={signUpFormData.name}
-                        />
-                        <input 
-                        type="text" 
-                        name="email" 
-                        placeholder="Email Address"
-                        onChange={handleInputChange}
-                        value={signUpFormData.email}
-                        />
-                        <input 
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        onChange={handleInputChange}
-                        value={signUpFormData.password}
-                        />
-                        <input 
-                        type="submit" 
-                        name="Sign Up" 
-                        value="Sign Up"
-                        />
-                    </form>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
-                </DialogActions>
-            </Dialog>
+            <div className="dialog" width="50px">
+                <Dialog 
+                    open={open} 
+                    onClose={handleClose} 
+                    aria-labelledby="form-dialog-title"
+                    maxWidth="md"
+                    margin="auto">
+                    
+                    <DialogTitle id="form-dialog-title"><Typography variant="h3" color="primary">Sign Up</Typography></DialogTitle>
+                    
+                    <DialogContent>
+                        
+                        <DialogContentText>
+                            <Typography variant="h5" >Enter your name, email, and password to sign up...</Typography>
+                        </DialogContentText>
+
+                        <form onSubmit={handleSignUp}>
+                            <TextField 
+                            label="Name"
+                            name="name" 
+                            placeholder="Name"
+                            style={{ margin: 8,
+                                width: 225 }}
+                            onChange={handleInputChange}
+                            value={signUpFormData.name}
+                            />
+                            <TextField 
+                            label="Email"
+                            name="email" 
+                            placeholder="Email Address"
+                            style={{ margin: 8,
+                                width: 225 }}
+                            onChange={handleInputChange}
+                            value={signUpFormData.email}
+                            />
+                            <TextField
+                            label="Password"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            style={{ margin: 8,
+                                width: 225 }}
+                            onChange={handleInputChange}
+                            value={signUpFormData.password}
+                            />
+                            <Button 
+                                type="submit" 
+                                style={{ margin: 15 }}
+                                color="primary"
+                            ><ArrowForwardRoundedIcon fontSize="large"></ArrowForwardRoundedIcon>
+                            </Button>
+
+                        </form>
+
+                    </DialogContent>
+
+                    <DialogActions>
+                        <Button 
+                            onClick={handleClose} 
+                            color="primary"
+                            variant="outlined"
+                            size="small"
+                            style={{ margin: 20 }}
+                            >Cancel
+                        </Button>
+                    </DialogActions>
+                    
+                </Dialog>
+            </div>
         </div>
     )
 }
