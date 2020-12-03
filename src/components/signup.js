@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 import { updateSignUpForm } from '../actions/signUpForm';
 import { createUser } from '../actions/currentUser';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Typography } from '@material-ui/core'
-import { withRouter } from "react-router";
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForward';
 
-const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history }) => {
+const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history, user, handleLogin }) => {
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -20,6 +20,7 @@ const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history }) => {
     const handleSignUp = event => {
         event.preventDefault()
         createUser(signUpFormData, history)
+        handleLogin()
     }
 
     const [open, setOpen] = React.useState(false);
@@ -46,12 +47,12 @@ const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history }) => {
                     maxWidth="md"
                     margin="auto">
                     
-                    <DialogTitle id="form-dialog-title"><Typography variant="h3" color="primary">Sign Up</Typography></DialogTitle>
+                    <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h3" color="primary">Sign Up</Typography></DialogTitle>
                     
                     <DialogContent>
                         
                         <DialogContentText>
-                            <Typography variant="h5" >Enter your name, email, and password to sign up...</Typography>
+                            Enter your name, email, and password to sign up...
                         </DialogContentText>
 
                         <form onSubmit={handleSignUp}>

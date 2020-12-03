@@ -18,9 +18,6 @@ const Medicine =  (props) => {
             <Typography variant="h4" color="secondary">notes: {medicine ? medicine.note : ""}</Typography>
             <br></br>
             <EditMedicine />
-            {/* <Button href={`${props.match.url}/edit`} size="large" variant="text">
-                <Typography variant="subtitle2">Edit Medicine</Typography>
-            </Button> */}
             <Button onClick={() => props.deleteMedicine(medicine.id, medicine.user_id, props.history)} size="large" variant="text">
                 <Typography variant="subtitle2">Delete Medicine</Typography>
             </Button>

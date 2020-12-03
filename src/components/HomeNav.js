@@ -1,13 +1,12 @@
 import React from 'react'
+import Login from './Login';
+import SignUp from './SignUp';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar } from '@material-ui/core';
-import SignUp from './SignUp';
-import Login from './Login';
 
 const useStyles = makeStyles((theme) => ({
     appbar: {
         background: 'none',
-        // position: 'absolute'
     },
 }))
 

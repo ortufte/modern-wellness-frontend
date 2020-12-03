@@ -4,7 +4,6 @@ import EditLog from './EditLog'
 import { deleteLog } from '../actions/userLogs';
 import { Button, Typography } from '@material-ui/core'
 
-
 const Log =  (props) => {
 
     const logId = props.match.params.logId

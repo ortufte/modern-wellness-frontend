@@ -19,7 +19,6 @@ export const setLogFormData = log => {
         symptomLevel: log ? log.symptom_level : "",
         note: log? log.note : ""
     }
-
     return {
         type: "SET_LOG_FORM_DATA",
         logFormData

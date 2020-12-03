@@ -1,11 +1,10 @@
-import React from 'react';
-import { editLog } from '../actions/userLogs';
-import LogForm from './LogForm';
-import { connect } from 'react-redux';
-import { setLogFormData } from '../actions/logForm';
-import { useEffect } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@material-ui/core';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import LogForm from './LogForm';
+import { editLog } from '../actions/userLogs';
+import { setLogFormData } from '../actions/logForm';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@material-ui/core';
 
 
 const EditLog = ({ history, editLog, match, userLogs, setLogFormData }) => {
@@ -41,16 +40,16 @@ const EditLog = ({ history, editLog, match, userLogs, setLogFormData }) => {
             <Dialog
                 open={open}
                 onClose={handleClose}
-                aria-labeledby="form-dialog-title"
+                aria-labelledby="form-dialog-title"
                 maxWidth="sm"
                 margin="auto">
 
-                <DialogTitle id="form-dialog-title"><Typography variant="h4" color="primary">Edit Log</Typography></DialogTitle>
+                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h4" color="primary">Edit Log</Typography></DialogTitle>
 
                 <DialogContent>
 
                     <DialogContentText>
-                        <Typography variant="h5" >Edit log information...</Typography>
+                        Edit log information...
                     </DialogContentText>
 
                         <LogForm 

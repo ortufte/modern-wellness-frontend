@@ -20,9 +20,6 @@ class Logs extends React.Component {
             <div>
                 <Typography variant="h3" color="secondary" style={{padding: 20}}>Daily Logs</Typography>
                 { logsJSX }
-                {/* <Button href={`${this.props.match.url}/new`} size="large" variant="text">
-                    <Typography variant="subtitle2">New Log</Typography>
-                </Button> */}
                 <NewLog />
             </div>
         )

@@ -1,6 +1,23 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
+  overrides: {
+    // Style sheet name ⚛️
+    MuiDialogContentText: {
+      // Name of the rule
+      root: {
+        // Some CSS
+        color: '#202224',
+        fontFamily: "Montserrat",
+        fontSize: '1rem',
+      },
+    },
+    MuiButton: {
+      text: {
+        
+      }
+    }
+  },
   palette: {
     primary: {
       main: '#852508',
@@ -44,8 +61,7 @@ const theme = createMuiTheme({
       textTransform: 'none',
       fontFamily: "Montserrat",
     },
-  
-  }
+  },
 });
 
 export default theme;

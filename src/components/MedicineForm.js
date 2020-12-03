@@ -1,10 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// 1. We grab the action creator - (below)
 import { updateMedicineForm } from '../actions/medicineForm';
-// 3. Redux gives us back a prop called updateLogForm
-// which when invoked actually redux will dispatch (back to action creator, 
-// then to reducer switch with data)
 import { TextField, Button } from '@material-ui/core';
 
 const MedicineForm = ({ medicineFormData, updateMedicineForm, userId, handleMedicineForm, buttonLabel, history }) => {
@@ -15,9 +11,6 @@ const MedicineForm = ({ medicineFormData, updateMedicineForm, userId, handleMedi
             ...medicineFormData, 
             [name]:value
         }
-    // 4. This is not an invocation of just the action creator
-    // it's now Redux dispatching the action creator with the 
-    // appropriate arguments. (below)
         updateMedicineForm(updatedFormInfo)
     }
 
@@ -76,6 +69,4 @@ const mapStateToProps = state => {
     }
 }
 
-// 2. We pass the action creator to the redux connect function
-// using either mapDispatchToProps or the shorthand objext syntax as below
 export default connect(mapStateToProps, ({ updateMedicineForm }))(MedicineForm)

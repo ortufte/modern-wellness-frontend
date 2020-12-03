@@ -1,12 +1,12 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 import { editMedicine } from '../actions/userMedicines';
 import MedicineForm from './MedicineForm';
-import { connect } from 'react-redux';
 import { setMedicineFormData } from '../actions/medicineForm';
-import { useEffect } from 'react'
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@material-ui/core';
-import { withRouter } from "react-router";
+
 
 const EditMedicine = ({ history, editMedicine, match, userMedicines, setMedicineFormData }) => {
     
@@ -41,16 +41,16 @@ const EditMedicine = ({ history, editMedicine, match, userMedicines, setMedicine
             <Dialog
                 open={open}
                 onClose={handleClose}
-                aria-labeledby="form-dialog-title"
+                aria-labelledby="form-dialog-title"
                 maxWidth="md"
                 margin="auto">
 
-                <DialogTitle id="form-dialog-title"><Typography variant="h4" color="primary">Edit Medicine</Typography></DialogTitle>
+                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h4" color="primary">Edit Medicine</Typography></DialogTitle>
 
                 <DialogContent>
 
                     <DialogContentText>
-                        <Typography variant="h5" >Edit medicine information...</Typography>
+                        Edit medicine information...
                     </DialogContentText>
 
                         <MedicineForm 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 import { updateLoginForm } from '../actions/loginForm'
 import { login } from '../actions/currentUser' //- login action from currentuser actions
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Typography } from '@material-ui/core'
-import { withRouter } from "react-router";
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForward';
 
 const Login = ({ loginFormData, updateLoginForm, login, history })  => { 
@@ -43,12 +43,12 @@ const Login = ({ loginFormData, updateLoginForm, login, history })  => {
                 onClose={handleClose} 
                 aria-labelledby="form-dialog-title">
                 
-                <DialogTitle id="form-dialog-title"><Typography variant="h3" color="primary">Login</Typography></DialogTitle>
+                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h3" color="primary">Login</Typography></DialogTitle>
                
                 <DialogContent>
                     
-                    <DialogContentText>
-                        <Typography variant="h5" >Enter your email address and password to login...</Typography>
+                    <DialogContentText  >
+                        Enter your email address and password to login...
                     </DialogContentText>
 
                     <form onSubmit={handleSubmit}> 

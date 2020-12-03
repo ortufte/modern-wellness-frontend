@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Typography, Button } from '@material-ui/core'
-import { logout } from '../actions/currentUser'; 
 import { connect } from 'react-redux'
+import { logout } from '../actions/currentUser'; 
+import { Typography, Button } from '@material-ui/core'
 
 
 const Nav = ({ match, logout, history }) => {

@@ -1,10 +1,9 @@
-
 import React from 'react';
-import { createLog } from '../actions/userLogs';
-import LogForm from './LogForm';
 import { connect } from 'react-redux';
-import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@material-ui/core';
 import { withRouter } from "react-router";
+import LogForm from './LogForm';
+import { createLog } from '../actions/userLogs';
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@material-ui/core';
 
 const NewLog = ({ history, createLog }) => {
 
@@ -36,12 +35,12 @@ const NewLog = ({ history, createLog }) => {
                 maxWidth="sm"
                 margin="auto">
 
-                <DialogTitle id="form-dialog-title"><Typography variant="h4" color="primary">New Log</Typography></DialogTitle>
+                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h4" color="primary">New Log</Typography></DialogTitle>
 
                 <DialogContent>
 
                     <DialogContentText>
-                        <Typography variant="h5" >Enter log information...</Typography>
+                        Enter log information...
                     </DialogContentText>
             
                     <LogForm 
