@@ -1,22 +1,11 @@
-const initialState = {
-    data: {
-        attributes: {
-            name: "",
-            email: "",
-            affliction: "",
-        },
-        id: " "
-    }
- }
-
-export default ( state = initialState, action ) => { // the state needs to be set equal to an array or an object depending on which data type the reducer is responsible for returning.
+export default ( state = null, action ) => { 
     switch (action.type) {
         case "SET_CURRENT_USER":
             return action.payload
-
         case "CLEAR_CURRENT_USER":
             return null
-
+        case "EDIT_USER":
+            return  action.payload
         default: 
             return state
     }

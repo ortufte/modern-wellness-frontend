@@ -1,12 +1,12 @@
 import { resetLoginForm } from './loginForm';
 import { resetSignUpForm } from './signUpForm';
-import { setUserLogs } from './userLogs';
-import { setUserMedicines } from './userMedicines';
+import { resetProfileForm } from './profileForm';
+import { setUserLogs, clearLogs } from './userLogs';
+import { setUserMedicines, clearMedicines } from './userMedicines';
 
 //synchronous action creators
 
 export const setCurrentUser = (user) => {
-  debugger
     return {
         type: "SET_CURRENT_USER",
         payload: user
@@ -19,13 +19,17 @@ export const clearCurrentUser = () => {
   }
 }
 
+export const editProfileSuccess = (user) => {
+  return {
+      type: "EDIT_USER",
+      payload: user
+  }
+}
+
 //asynchronous action creators - returning an action creator - function
 
-export const login = (credentials, history) => { 
+export const login = (userInfo, history) => { 
     return dispatch => {
-
-        // let user = this.state.loginForm - from simple react function in App.js
-        //could message creating user or soemthing 
         return fetch("http://localhost:3001/api/v1/login", {
           credentials: "include",
           method: 'POST',
@@ -33,7 +37,7 @@ export const login = (credentials, history) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(
-            credentials 
+            userInfo
           )
         })
         .then(resp => resp.json())
@@ -44,10 +48,10 @@ export const login = (credentials, history) => {
           else {
      
             dispatch(setCurrentUser(user)) 
+            dispatch(setUserLogs(user.data.attributes.logs))
+            dispatch(setUserMedicines(user.data.attributes.medicines))
             dispatch(resetLoginForm())
             history.push(`/users/${user.data.id}`)
-             //need to update to only grab name and email, not password
-            // this.setState({ currentUser: user }) - vanilla redux
           }
         })
         .catch(err => console.error("Error:", err)); //JS Errors
@@ -57,7 +61,8 @@ export const login = (credentials, history) => {
 export const logout = event => {
   return dispatch => {
     dispatch(clearCurrentUser()) 
-    // dispatch(clearLogs()) clearing logs from state 
+    dispatch(clearLogs())
+    dispatch(clearMedicines())
 
     return fetch("http://localhost:3001/api/v1/logout", { 
       credentials: "include",
@@ -67,9 +72,11 @@ export const logout = event => {
 }
 
 export const getCurrentUser = () => { 
+
   return dispatch => {
       return fetch("http://localhost:3001/api/v1/get_current_user", {
-        credentials: "include",
+        credentials: "include",  
+        //credentials (cookies) (set to true in cors.rb) are required when you send a request that needs authorization (password)
         method: "GET",
         headers: {
           'Content-Type': 'application/json',
@@ -95,9 +102,6 @@ export const createUser = (userData, history) => {
     const userInfo = {
       user: userData
     }
-
-      // let user = this.state.loginForm - from simple react function in App.js
-      //could message creating user or soemthing 
       return fetch("http://localhost:3001/api/v1/signup", {
         credentials: "include",
         method: 'POST',
@@ -117,13 +121,46 @@ export const createUser = (userData, history) => {
           dispatch(setCurrentUser(user))
           dispatch(resetSignUpForm())
           history.push(`/users/${user.data.id}`)
-           
-           //need to update to only grab name and email, not password
-          // this.setState({ currentUser: user }) - vanilla redux
         }
       })
       .catch(err => console.error("Error:", err)); //JS Errors
   } 
+}
+
+export const editUser = (profileFormData, userId, history) => {
+  return dispatch => {
+    const backendCompatibleData = {
+        user: {
+            name: profileFormData.name,
+            affliction: profileFormData.affliction,
+            user_id: userId,
+        }
+    }
+    return fetch(`http://localhost:3001/api/v1/users/${userId}`, {
+        credentials: "include", 
+        method: "PATCH",
+        headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(
+              backendCompatibleData
+          )
+    })
+    .then(resp => resp.json())
+    .then(user => {
+        if (user.error) {
+            alert(user.error)
+        } 
+        else {
+            dispatch(editProfileSuccess(user))
+            dispatch(resetProfileForm)
+            history.push(`/users/${userId}/profile`)
+        }
+    }) 
+    .catch((error) => {
+        console.error('Error:', error);
+      })
+}
 }
 
 
