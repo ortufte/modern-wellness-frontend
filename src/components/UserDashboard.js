@@ -7,11 +7,9 @@ import Logs from './Logs';
 import Profile from './Profile'
 import Log from './Log';
 import Medicine from './Medicine';
-import GuardedRoute from './GuardedRoute';
+import ProtectedRoute from './ProtectedRoute';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
-
-
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,11 +50,11 @@ const UserDashboard = ({ currentUser, match, history }) => {
                     <Paper className={classes.paper} >
                  
                         <Switch>
-                            <GuardedRoute path={`${match.path}/logs/:logId`} component={Log}/>
-                            <GuardedRoute exact path={`${match.path}/logs`} component={Logs}/>
-                            <GuardedRoute path={`${match.path}/medicine-cabinet/:medicineId`} component={Medicine}/>
-                            <GuardedRoute exact path={`${match.path}/medicine-cabinet`} component={MedicineCabinet}/>
-                            <GuardedRoute exact path={`${match.path}/profile`} component={Profile}/>
+                            <ProtectedRoute path={`${match.path}/logs/:logId`} component={Log}/>
+                            <ProtectedRoute exact path={`${match.path}/logs`} component={Logs}/>
+                            <ProtectedRoute path={`${match.path}/medicine-cabinet/:medicineId`} component={Medicine}/>
+                            <ProtectedRoute exact path={`${match.path}/medicine-cabinet`} component={MedicineCabinet}/>
+                            <ProtectedRoute exact path={`${match.path}/profile`} component={Profile}/>
                         </Switch>
        
                     </Paper>
