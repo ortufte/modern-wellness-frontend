@@ -35,7 +35,7 @@ const EditMedicine = ({ history, editMedicine, match, userMedicines, setMedicine
     return (
         <div className="editMedicine">
             <Button size="large" variant="text" onClick={handleClickOpen}>
-                <Typography variant="subtitle2">Edit Medicine</Typography>
+                <Typography variant="subtitle2">Edit Treatment</Typography>
             </Button>
 
             <Dialog
@@ -45,12 +45,12 @@ const EditMedicine = ({ history, editMedicine, match, userMedicines, setMedicine
                 maxWidth="md"
                 margin="auto">
 
-                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h4" color="primary">Edit Medicine</Typography></DialogTitle>
+                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h3" color="primary">Edit Treatment</Typography></DialogTitle>
 
                 <DialogContent>
 
                     <DialogContentText>
-                        Edit medicine information...
+                        Edit treatment information...
                     </DialogContentText>
 
                         <MedicineForm 

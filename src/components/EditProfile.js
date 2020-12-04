@@ -46,7 +46,7 @@ const EditProfile = ({ history, editUser, setProfileFormData, currentUser }) => 
                 maxWidth="sm"
                 margin="auto">
 
-                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h4" color="primary">Edit Profile</Typography></DialogTitle>
+                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h3" color="primary">Edit Profile</Typography></DialogTitle>
 
                 <DialogContent>
 

@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import EditLog from './EditLog'
 import { deleteLog } from '../actions/userLogs';
 import { Button, Typography } from '@material-ui/core'
+import Moment from 'moment';
 
 const Log =  (props) => {
+        
 
     const logId = props.match.params.logId
     const log = props.userLogs.find(log => log.id === parseInt(logId))
@@ -13,7 +15,7 @@ const Log =  (props) => {
         <div className="log">
             <Typography variant="h3" color="secondary" style={{padding: 20}}>Log Details</Typography>
             <br></br>
-            <Typography variant="h4" color="secondary">date: {log ? log.date : ""}</Typography>
+            <Typography variant="h4" color="secondary">date: {log ? Moment(log.date).format('DD-MM-YYYY') : ""}</Typography>
             <Typography variant="h4" color="secondary">medicine: {log ? log.medicine : ""}</Typography>
             <Typography variant="h4" color="secondary">symptom level: {log ? log.symptom_level : "" }</Typography>
             <Typography variant="h4" color="secondary">notes: {log ? log.note : ""}</Typography>

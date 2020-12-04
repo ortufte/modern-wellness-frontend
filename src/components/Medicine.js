@@ -11,7 +11,7 @@ const Medicine =  (props) => {
 
     return (
         <div className="medicine" >
-            <Typography variant="h3" color="secondary" style={{padding: 20}}>Medicine Details</Typography>
+            <Typography variant="h3" color="secondary" style={{padding: 20}}>Treatment Details</Typography>
             <br></br>
             <Typography variant="h4" color="secondary">name: {medicine ? medicine.name : ""}</Typography>
             <Typography variant="h4" color="secondary">dosage: {medicine ? medicine.dosage : ""}</Typography>

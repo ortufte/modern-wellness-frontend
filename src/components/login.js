@@ -34,7 +34,7 @@ const Login = ({ loginFormData, updateLoginForm, login, history })  => {
     
     return (
         <div className="login">
-            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
+            <Button variant="text" color="secondary" onClick={handleClickOpen}>
                 Login
             </Button>
             
@@ -56,6 +56,7 @@ const Login = ({ loginFormData, updateLoginForm, login, history })  => {
                             label="Email"
                             name="email" 
                             placeholder="Email Address"
+                            required={true}
                             style={{ margin: 8,
                             width: 200 }}
                             onChange={handleInputChange} //initial ({name, value}) is destructuring the event
@@ -66,6 +67,7 @@ const Login = ({ loginFormData, updateLoginForm, login, history })  => {
                             type="password"
                             name="password"
                             placeholder="Password"
+                            required={true}
                             style={{ margin: 8,
                             width: 200 }}
                             onChange={handleInputChange}

@@ -32,16 +32,21 @@ const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm, buttonLabe
                 id="date" 
                 label="Date" 
                 name="date" 
-                placeholder="Date"
+                placeholder="mm/dd/yyyy"
+                helperText="format: mm/dd/yyyy"
+                required={true}
+                margin="normal"
                 fullWidth
                 onChange={handleInputChange}
                 value={logFormData.date}
             />
             <TextField
                 id="medicine"
-                label="Medicine "
+                label="Treatment"
                 name="medicine" 
-                placeholder="Medicine"
+                placeholder="Treatment"
+                helperText="        "
+                margin="normal"
                 fullWidth
                 onChange={handleInputChange}
                 value={logFormData.medicine}
@@ -51,6 +56,9 @@ const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm, buttonLabe
                 label="Symptom Level "
                 name="symptomLevel" 
                 placeholder="Symptom Level"
+                helperText="range: 0-10 (mild to severe)"
+                required={true}
+                margin="normal"
                 fullWidth
                 onChange={handleInputChange}
                 value={logFormData.symptomLevel}
@@ -60,6 +68,8 @@ const LogForm = ({ logFormData, updateLogForm, userId, handleLogForm, buttonLabe
                 label="Notes "
                 name="note" 
                 placeholder="Notes"
+                helperText="        "
+                margin="normal"
                 fullWidth
                 multiline
                 onChange={handleInputChange}

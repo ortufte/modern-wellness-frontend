@@ -10,17 +10,18 @@ class MedicineCabinet extends React.Component {
 
         const medicinesJSX = this.props.userMedicines.map(medicine =>
 
-        <li key={medicine.id}>
+        <h3 key={medicine.id}>
             <Button component={Link} to={`${this.props.match.url}/${medicine.id}`} size="large" variant="text" >
                 <Typography variant="h4" color="secondary">{medicine.name}</Typography>
             </Button>
             
-        </li>)
+        </h3>)
 
         return (
             <div className="medicine-cabinet" >
                 <Typography variant="h3" color="secondary" style={{padding: 20}}>Medicine Cabinet</Typography>
                 { medicinesJSX }
+                <br></br>
                 <NewMedicine />
             </div>
         )

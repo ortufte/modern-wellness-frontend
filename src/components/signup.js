@@ -6,7 +6,7 @@ import { createUser } from '../actions/currentUser';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Typography } from '@material-ui/core'
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForward';
 
-const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history, user, handleLogin }) => {
+const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history }) => {
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -20,7 +20,6 @@ const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history, user, h
     const handleSignUp = event => {
         event.preventDefault()
         createUser(signUpFormData, history)
-        handleLogin()
     }
 
     const [open, setOpen] = React.useState(false);
@@ -35,7 +34,7 @@ const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history, user, h
 
     return (
         <div className="signup" >
-            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
+            <Button variant="text" color="secondary" onClick={handleClickOpen}>
                 Sign Up
             </Button>
 
@@ -64,6 +63,7 @@ const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history, user, h
                                 width: 225 }}
                             onChange={handleInputChange}
                             value={signUpFormData.name}
+                            required={true}
                             />
                             <TextField 
                             label="Email"
@@ -73,6 +73,7 @@ const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history, user, h
                                 width: 225 }}
                             onChange={handleInputChange}
                             value={signUpFormData.email}
+                            required={true}
                             />
                             <TextField
                             label="Password"
@@ -83,6 +84,7 @@ const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history, user, h
                                 width: 225 }}
                             onChange={handleInputChange}
                             value={signUpFormData.password}
+                            required={true}
                             />
                             <Button 
                                 type="submit" 
