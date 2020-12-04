@@ -25,7 +25,7 @@ const NewMedicine = ({ history, createMedicine }) => {
     return (
         <div className="addMedicine">
             <Button size="large" variant="text" onClick={handleClickOpen}>
-                <Typography variant="subtitle2">New Medicine</Typography>
+                <Typography variant="subtitle2">New Treatment</Typography>
             </Button>
 
             <Dialog
@@ -35,12 +35,12 @@ const NewMedicine = ({ history, createMedicine }) => {
                 maxWidth="md"
                 margin="auto">
 
-                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h4" color="primary">New Medicine</Typography></DialogTitle>
+                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h3" color="primary">New Treatment</Typography></DialogTitle>
             
                 <DialogContent>
 
                     <DialogContentText>
-                        Enter medicine information...
+                        Enter treatment information...
                     </DialogContentText>
 
                     <MedicineForm 

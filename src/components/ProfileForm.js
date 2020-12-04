@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { updateProfileForm } from '../actions/profileForm';
 import { TextField, Button } from '@material-ui/core'
 
-const ProfileForm = ({ profileFormData, updateProfileForm, userId, handleProfileForm, buttonLabel, history }) => {
+const ProfileForm = ({ profileFormData, updateProfileForm, userId, handleProfileForm, buttonLabel, history, currentUser }) => {
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -27,6 +27,8 @@ const ProfileForm = ({ profileFormData, updateProfileForm, userId, handleProfile
                 label="Name" 
                 name="name" 
                 placeholder="Name"
+                required={true}
+                margin="normal"
                 fullWidth
                 onChange={handleInputChange}
                 value={profileFormData.name}
@@ -36,6 +38,8 @@ const ProfileForm = ({ profileFormData, updateProfileForm, userId, handleProfile
                 label="What would you like to track symptoms for?"
                 name="affliction" 
                 placeholder="Affliction"
+                required={true}
+                margin="normal"
                 fullWidth
                 onChange={handleInputChange}
                 value={profileFormData.affliction}
@@ -56,7 +60,8 @@ const ProfileForm = ({ profileFormData, updateProfileForm, userId, handleProfile
 const mapStateToProps = state => {
     return {
         profileFormData: state.profileForm,
-        userId: state.currentUser.data.id
+        userId: state.currentUser.data.id,
+        currentUser: state.currentUser
     }
 }
 

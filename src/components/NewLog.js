@@ -35,7 +35,7 @@ const NewLog = ({ history, createLog }) => {
                 maxWidth="sm"
                 margin="auto">
 
-                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h4" color="primary">New Log</Typography></DialogTitle>
+                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h3" color="primary">New Log</Typography></DialogTitle>
 
                 <DialogContent>
 

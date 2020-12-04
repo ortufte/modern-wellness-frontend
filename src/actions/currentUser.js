@@ -43,7 +43,7 @@ export const login = (userInfo, history) => {
         .then(resp => resp.json())
         .then(user => {
           if (user.error) {
-            alert(user.error) //Server Errors
+            console.log(user.error) //Server Errors
           }
           else {
      

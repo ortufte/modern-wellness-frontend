@@ -44,7 +44,7 @@ const EditLog = ({ history, editLog, match, userLogs, setLogFormData }) => {
                 maxWidth="sm"
                 margin="auto">
 
-                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h4" color="primary">Edit Log</Typography></DialogTitle>
+                <DialogTitle id="form-dialog-title" disableTypography ><Typography variant="h3" color="primary">Edit Log</Typography></DialogTitle>
 
                 <DialogContent>
 
