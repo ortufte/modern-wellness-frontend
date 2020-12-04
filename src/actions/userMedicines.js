@@ -101,6 +101,7 @@ export const editMedicine = (medicineFormData, userId, history, medicineId) => {
                 alert(medicine.error)
             } 
             else {
+  
                 dispatch(editMedicineSuccess(medicine))
                 dispatch(resetMedicineForm)
                 history.push(`/users/${userId}/medicine-cabinet/${medicineId}`)

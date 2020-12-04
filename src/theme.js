@@ -44,7 +44,7 @@ const theme = createMuiTheme({
     },
     //page content 
     h4: {
-      fontFamily: "Epilogue"
+      fontFamily: "Playfair Display"
     },
     //button text - dark grey
     subtitle2: {

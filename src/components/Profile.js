@@ -8,9 +8,9 @@ const Profile = ({ currentUser }) => {
     return (
         <div className="profile">
             <Typography variant="h3" color="secondary" style={{padding: 20}}>Your Profile</Typography>
-            <br></br>
             <Typography variant="h4" color="secondary">name: {currentUser ? currentUser.data.attributes.name : ""} </Typography>
-            <Typography variant="h4" color="secondary">currently tracking symptoms for: {currentUser ? currentUser.data.attributes.affliction : ""} </Typography>
+            <Typography variant="h4" color="secondary">currently tracking: {currentUser ? currentUser.data.attributes.affliction : ""} </Typography>
+            <br></br>
             <EditProfile />
         </div>
     )

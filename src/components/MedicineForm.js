@@ -26,15 +26,19 @@ const MedicineForm = ({ medicineFormData, updateMedicineForm, userId, handleMedi
                 label="Name"
                 name="name" 
                 placeholder="Name"
+                required={true}
+                margin="normal"
                 fullWidth
                 onChange={handleInputChange}
                 value={medicineFormData.name}
             />
             <TextField 
                 id="dosage"
-                label="Dosage"
+                label="Dosage/Frequency"
                 name="dosage" 
-                placeholder="Dosage"
+                placeholder="Dosage/Frequency"
+                required={true}
+                margin="normal"
                 fullWidth
                 onChange={handleInputChange}
                 value={medicineFormData.dosage}
@@ -44,6 +48,7 @@ const MedicineForm = ({ medicineFormData, updateMedicineForm, userId, handleMedi
                 label="Notes"
                 name="note" 
                 placeholder="Notes"
+                margin="normal"
                 fullWidth
                 multiline
                 onChange={handleInputChange}
