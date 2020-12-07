@@ -6,6 +6,8 @@ import { createUser } from '../actions/currentUser';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Typography } from '@material-ui/core'
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForward';
 
+//don't fuck with me 
+
 const SignUp = ({ signUpFormData, updateSignUpForm, createUser, history }) => {
 
     const handleInputChange = event => {
