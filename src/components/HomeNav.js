@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from './Login';
-import SignUp from './SignUp';
+import SignUp from './Signup';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar } from '@material-ui/core';
 
